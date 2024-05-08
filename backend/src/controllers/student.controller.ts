@@ -13,11 +13,11 @@ const create = async (req: Request, res: Response) => {
     const { name, email, regId, githubId } = req.body;
 
     if (!name || !email || !regId) {
-      res.status(400).json({ error: "All fields are required" });
+      res.status(400).json({ message: "All fields are required" });
       return;
     }
     if (!email.includes("@") || !email.includes(".")) {
-      res.status(400).json({ error: "Invalid email" });
+      res.status(400).json({ message: "Invalid email" });
       return;
     }
 
@@ -31,7 +31,7 @@ const create = async (req: Request, res: Response) => {
     });
     res.status(200).json(student);
   } catch (e) {
-    res.status(500).json({ error: e });
+    res.status(500).json({ message: e?.message });
   }
 };
 
@@ -76,7 +76,7 @@ const update = async (req: Request, res: Response) => {
     });
     res.status(200).json(updatedStudents);
   } catch (e) {
-    res.status(500).json({ error: e });
+    res.status(500).json({ message: e?.message });
   }
 };
 
@@ -85,7 +85,7 @@ const findAll = async (req: Request, res: Response) => {
     const students = await prisma.student.findMany();
     res.status(200).json(students);
   } catch (e) {
-    res.status(500).json({ error: e });
+    res.status(500).json({ message: e?.message });
   }
 };
 

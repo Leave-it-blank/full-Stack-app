@@ -8,6 +8,6 @@ router.post("/create", StudentController.create);
 // Route to get all students from the database
 router.get("/all", StudentController.findAll);
 // Route to update a student by ID
-router.post("/:id/update", StudentController.update);
+router.put("/:id/update", StudentController.update);
 
 export default router;
